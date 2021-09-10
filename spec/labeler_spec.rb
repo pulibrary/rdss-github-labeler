@@ -59,4 +59,42 @@ RSpec.describe Labeler do
       end
     end
   end
+
+  describe ".clear_labels" do
+    it "calls the instance method" do
+      allow(client).to receive(:labels).and_return([])
+      instance = described_class.new(client: client, labels_hash: {})
+      allow(described_class).to receive(:new).and_return(instance)
+      described_class.clear_labels("sample_repo")
+      expect(described_class).to have_received(:new)
+    end
+  end
+
+  describe "#clear_labels" do
+    it "applies labels" do
+      labels = [
+        { :id=>3339035774,
+          :node_id=>"MDU6TGFiZWwzMzM5MDM1Nzc0",
+          :url=> "https://api.github.com/repos/pulibrary/dls-github-label-maker/labels/bug",
+          :name=>"bug",
+          :color=>"ff5050",
+          :default=>true,
+          :description=>"Something isn't working"},
+        { :id=>3342338650,
+          :node_id=>"MDU6TGFiZWwzMzQyMzM4NjUw",
+          :url=> "https://api.github.com/repos/pulibrary/dls-github-label-maker/labels/refactor",
+          :name=>"refactor",
+          :color=>"44cec0",
+          :default=>false,
+          :description=>nil}
+      ]
+      allow(client).to receive(:labels).and_return(labels)
+      allow(client).to receive(:delete_label!)
+      labeler = described_class.new(client: client)
+      repo = "sample_repo"
+      labeler.clear_labels(repo)
+      expect(client).to have_received(:delete_label!).with(repo, "bug")
+      expect(client).to have_received(:delete_label!).with(repo, "refactor")
+    end
+  end
 end

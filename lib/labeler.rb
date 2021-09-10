@@ -7,6 +7,10 @@ class Labeler
     new.apply_labels(repo)
   end
 
+  def self.clear_labels(repo)
+    new.clear_labels(repo)
+  end
+
   attr_reader :client, :labels_hash
   # @param client Octokit::Client
   # @param labels_hash Hash see labels.json for expected structure
@@ -36,11 +40,14 @@ class Labeler
     end
   end
 
-  # TODO
   # Delete all the labels and remove them from issues.
-  # Only for initializing a new project.
+  # WARNING: only for initializing a new project.
   # @param repo String The repository, aka "pulibrary/figgy"
-  def delete_labels(repo)
+  def clear_labels(repo)
+    labels = client.labels(repo)
+    labels.each do |label|
+      client.delete_label!(repo, label[:name])
+    end
   end
 
   private
