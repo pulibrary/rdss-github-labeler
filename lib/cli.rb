@@ -8,7 +8,7 @@ class LabelerCLI < Thor
 
   desc "categories", "list all the category names"
   def categories
-    puts Labeler.new(client: nil).categories
+    puts Labeler.new.categories
   end
 
   desc "apply_labels [org/repository]", "apply all the labels to given repo"
