@@ -13,3 +13,11 @@ jobs:
           name: bundler version
           command: gem install bundler:2.2.16
       - ruby/bundle-install
+      - run:
+          name: Run rspec
+          command: bundle exec rspec spec/
+
+workflows:
+  build_accept:
+    jobs:
+      - build
