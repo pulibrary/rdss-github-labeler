@@ -1,0 +1,40 @@
+{
+  "category1": {
+    "color": "ff5050",
+    "labels": ["bug", "security"]
+  },
+  "category2": {
+    "color": "ffa573",
+    "labels": ["accessibility", "content",
+      "responsive", "user experience",
+      "visual design"]
+  },
+  "category3": {
+    "color": "ffd4a0",
+    "labels": ["cleanup"]
+  },
+  "category4": {
+    "color": "41d6c3",
+    "labels": ["optimization", "documentation",
+      "enhancement"]
+  },
+  "category5": {
+    "color": "44cec0",
+    "labels": ["refactor"]
+  },
+  "category6": {
+    "color": "b4e051",
+    "labels": ["feature", "migration",
+      "user-request", "infrastructure"]
+  },
+  "category7": {
+    "color": "cc317c",
+    "labels": ["question", "replication-needed",
+      "spike", "user-test"]
+  },
+  "category7": {
+    "color": "e9e9e9",
+    "labels": ["duplicate", "on hold",
+      "invalid", "wontfix"]
+  }
+}
