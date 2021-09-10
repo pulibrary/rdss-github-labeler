@@ -7,7 +7,7 @@ RSpec.describe Labeler do
 
   describe "#categories" do
     it "returns the category names" do
-      labeler = described_class.new(client: client)
+      labeler = described_class.new
       expect(labeler.categories).to include("category1")
     end
   end

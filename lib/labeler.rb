@@ -4,16 +4,14 @@ require 'octokit'
 
 class Labeler
   def self.apply_labels(repo)
-    new(
-      client: Octokit::Client.new(:access_token => ENV["GITHUBTOKEN"])
-    ).apply_labels(repo)
+    new.apply_labels(repo)
   end
 
   attr_reader :client, :labels_hash
   # @param client Octokit::Client
   # @param labels_hash Hash see labels.json for expected structure
-  def initialize(client:, labels_hash: nil)
-    @client = client
+  def initialize(client: nil, labels_hash: nil)
+    @client = client || connect_client
     @labels_hash = labels_hash || load_labels
   end
 
@@ -46,6 +44,14 @@ class Labeler
   end
 
   private
+
+    def connect_client
+      Octokit::Client.new(:access_token => token)
+    end
+
+    def token
+      `lpass show hubot_github_token --notes`
+    end
 
     def load_labels
       JSON.parse(File.read("labels.json"), symbolize_names: true)
