@@ -4,6 +4,9 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
+gem "octokit", "~> 4.0"
+gem "pry"
+
 group :test do
   gem "rspec"
 end
