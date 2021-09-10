@@ -10,6 +10,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: bundler version
+          command: gem install bundler:2.2.16
       - ruby/bundle-install
