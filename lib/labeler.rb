@@ -27,7 +27,13 @@ class Labeler
   def apply_labels(repo)
     labels_hash.values.each do |h|
       h[:labels].each do |label|
-        client.add_label(repo, label, h[:color])
+        begin
+          client.add_label(repo, label, h[:color])
+        rescue Octokit::UnprocessableEntity => e
+          if already_exists_error?(e.message)
+            client.update_label(repo, label, { color: h[:color] })
+          end
+        end
       end
     end
   end
@@ -43,5 +49,13 @@ class Labeler
 
     def load_labels
       JSON.parse(File.read("labels.json"), symbolize_names: true)
+    end
+
+    def already_exists_error?(message)
+      message.split("\n")
+        .map{ |l| l.strip.split(":")}
+        .select{ |pair| pair.first == "code"}
+        .flatten[1]
+        .strip == "already_exists"
     end
 end
