@@ -5,7 +5,7 @@ require 'octokit'
 class Labeler
   def self.apply_labels(repo)
     new(
-      client: Octokit::Client.new(:access_token => ENV["GH_TOKEN"])
+      client: Octokit::Client.new(:access_token => ENV["GITHUBTOKEN"])
     ).apply_labels(repo)
   end
 
