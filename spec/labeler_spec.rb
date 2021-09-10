@@ -7,8 +7,18 @@ RSpec.describe Labeler do
 
   describe "#categories" do
     it "returns the category names" do
-      labeler = Labeler.new(client: client)
+      labeler = described_class.new(client: client)
       expect(labeler.categories).to include("category1")
+    end
+  end
+
+  describe ".apply_labels" do
+    it "calls the instance method" do
+      labels_hash = {}
+      instance = described_class.new(client: client, labels_hash: labels_hash)
+      allow(described_class).to receive(:new).and_return(instance)
+      described_class.apply_labels("sample_repo")
+      expect(described_class).to have_received(:new)
     end
   end
 
@@ -19,7 +29,7 @@ RSpec.describe Labeler do
         :category5=>{:color=>"44cec0", :labels=>["refactor"]}
       }
       allow(client).to receive(:add_label)
-      labeler = Labeler.new(client: client, labels_hash: labels_hash)
+      labeler = described_class.new(client: client, labels_hash: labels_hash)
       repo = "sample_repo"
       labeler.apply_labels(repo)
       expect(client).to have_received(:add_label).with(repo, "bug", "ff5050")
@@ -41,7 +51,7 @@ RSpec.describe Labeler do
         allow(client).to receive(:add_label).and_raise(Octokit::UnprocessableEntity.new(response_hash))
         allow(client).to receive(:update_label)
 
-        labeler = Labeler.new(client: client, labels_hash: labels_hash)
+        labeler = described_class.new(client: client, labels_hash: labels_hash)
         repo = "sample_repo"
         labeler.apply_labels(repo)
         expect(client).to have_received(:add_label).with(repo, "refactor", "44cec0")
