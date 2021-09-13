@@ -15,6 +15,11 @@ class LabelerCLI < Thor
   def apply_labels(repo)
     Labeler.apply_labels(repo)
   end
+
+  desc "clear_labels [org/repository/", "delete all labels from the given repo"
+  def clear_labels(repo)
+    Labeler.clear_labels(repo)
+  end
 end
 
 LabelerCLI.start(ARGV)

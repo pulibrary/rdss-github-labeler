@@ -1,10 +1,15 @@
 require 'json'
+require 'open3'
 require 'pry'
 require 'octokit'
 
 class Labeler
   def self.apply_labels(repo)
     new.apply_labels(repo)
+  end
+
+  def self.clear_labels(repo)
+    new.clear_labels(repo)
   end
 
   attr_reader :client, :labels_hash
@@ -36,11 +41,14 @@ class Labeler
     end
   end
 
-  # TODO
   # Delete all the labels and remove them from issues.
-  # Only for initializing a new project.
+  # WARNING: only for initializing a new project.
   # @param repo String The repository, aka "pulibrary/figgy"
-  def delete_labels(repo)
+  def clear_labels(repo)
+    labels = client.labels(repo)
+    labels.each do |label|
+      client.delete_label!(repo, label[:name])
+    end
   end
 
   private
@@ -50,7 +58,8 @@ class Labeler
     end
 
     def token
-      `lpass show hubot_github_token --notes`
+      out, _st = Open3.capture2('lpass show hubot_github_token --notes')
+      out
     end
 
     def load_labels
