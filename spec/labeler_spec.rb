@@ -3,7 +3,16 @@ require 'labeler'
 require 'octokit'
 
 RSpec.describe Labeler do
-  let(:client) { instance_double("Octocat::Client") }
+  let(:client) { instance_double("Octokat::Client") }
+
+  describe "instantiation" do
+    it "creates an octokit client" do
+      allow(Octokit::Client).to receive(:new)
+      allow(Open3).to receive(:capture2).and_return("token")
+      described_class.new
+      expect(Octokit::Client).to have_received(:new)
+    end
+  end
 
   describe "#categories" do
     it "returns the category names" do

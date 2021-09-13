@@ -1,4 +1,5 @@
 require 'json'
+require 'open3'
 require 'pry'
 require 'octokit'
 
@@ -57,7 +58,8 @@ class Labeler
     end
 
     def token
-      `lpass show hubot_github_token --notes`
+      out, _st = Open3.capture2('lpass show hubot_github_token --notes')
+      out
     end
 
     def load_labels
