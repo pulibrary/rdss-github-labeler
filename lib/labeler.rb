@@ -49,6 +49,14 @@ class Labeler
     end
   end
 
+  # Delete the labels from the repo
+  # @param repo String The repository, aka "pulibrary/figgy"
+  # @param label String The name of the label, aka "on hold"
+  # @return bool Whether it was deleted
+  def delete_label(repo, label)
+    client.delete_label!(repo, label)
+  end
+
   private
 
     def connect_client
