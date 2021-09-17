@@ -21,6 +21,30 @@ RSpec.describe Labeler do
     end
   end
 
+  describe "#list_labels" do
+    it "returns a list of name / color pairs" do
+      octokit_result = [
+        {:id=>654012521,
+         :node_id=>"MDU6TGFiZWw2NTQwMTI1MjE=",
+         :url=>"https://api.github.com/repos/pulibrary/figgy/labels/bug",
+         :name=>"bug",
+         :color=>"ff5050",
+         :default=>true,
+         :description=>""},
+        {:id=>654012527,
+         :node_id=>"MDU6TGFiZWw2NTQwMTI1Mjc=",
+         :url=>"https://api.github.com/repos/pulibrary/figgy/labels/wontfix",
+         :name=>"wontfix",
+         :color=>"ffffff",
+         :default=>true,
+         :description=>nil}
+      ]
+      allow(client).to receive(:labels).and_return(octokit_result)
+      labeler = described_class.new(client: client)
+      expect(labeler.list_labels("sample_repo")).to include(["bug", "ff5050"])
+    end
+  end
+
   describe "#apply_labels" do
     it "applies labels" do
       labels_hash = {

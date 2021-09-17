@@ -17,6 +17,8 @@ class Labeler
     labels_hash.keys.map(&:to_s)
   end
 
+  # @param repo String The repository, aka "pulibrary/figgy"
+  # @return Array<Array<String, String>> a list of labels by name and color
   def list_labels(repo)
     client.labels(repo).map{ |l| [l[:name], l[:color]]}
   end
