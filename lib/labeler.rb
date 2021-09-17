@@ -50,11 +50,13 @@ class Labeler
   end
 
   # Delete the labels from the repo
-  # @param repo String The repository, aka "pulibrary/figgy"
+  # @param repos Array<String> List of repositories to delete from, aka ["pulibrary/figgy", "pulibrary/dpul"]
   # @param label String The name of the label, aka "on hold"
   # @return bool Whether it was deleted
-  def delete_label(repo, label)
-    client.delete_label!(repo, label)
+  def delete_label(repos, label)
+    repos.map do |repo|
+      client.delete_label!(repo, label)
+    end
   end
 
   private

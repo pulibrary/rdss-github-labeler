@@ -87,7 +87,7 @@ RSpec.describe Labeler do
     it "uses the octokit method" do
       allow(client).to receive(:delete_label!)
       labeler = described_class.new(client: client)
-      labeler.delete_label("sample_repo", "on hold")
+      labeler.delete_label(["sample_repo"], "on hold")
       expect(client).to have_received(:delete_label!).with("sample_repo", "on hold")
     end
   end

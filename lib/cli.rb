@@ -28,9 +28,9 @@ class LabelerCLI < Thor
     Labeler.new.clear_labels(repo)
   end
 
-  desc "delete_label [org/repository] label", "delete the label from the repo"
-  def delete_label(repo, label)
-    puts Labeler.new.delete_label(repo, label)
+  desc "delete_label [org/repository,org/repository] label", "delete the label from the repo"
+  def delete_label(repos, label)
+    puts Labeler.new.delete_label(repos.split(","), label)
   end
 end
 
