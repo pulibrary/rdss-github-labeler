@@ -21,13 +21,27 @@ RSpec.describe Labeler do
     end
   end
 
-  describe ".apply_labels" do
-    it "calls the instance method" do
-      labels_hash = {}
-      instance = described_class.new(client: client, labels_hash: labels_hash)
-      allow(described_class).to receive(:new).and_return(instance)
-      described_class.apply_labels("sample_repo")
-      expect(described_class).to have_received(:new)
+  describe "#list_labels" do
+    it "returns a list of name / color pairs" do
+      octokit_result = [
+        {:id=>654012521,
+         :node_id=>"MDU6TGFiZWw2NTQwMTI1MjE=",
+         :url=>"https://api.github.com/repos/pulibrary/figgy/labels/bug",
+         :name=>"bug",
+         :color=>"ff5050",
+         :default=>true,
+         :description=>""},
+        {:id=>654012527,
+         :node_id=>"MDU6TGFiZWw2NTQwMTI1Mjc=",
+         :url=>"https://api.github.com/repos/pulibrary/figgy/labels/wontfix",
+         :name=>"wontfix",
+         :color=>"ffffff",
+         :default=>true,
+         :description=>nil}
+      ]
+      allow(client).to receive(:labels).and_return(octokit_result)
+      labeler = described_class.new(client: client)
+      expect(labeler.list_labels("sample_repo")).to include(["bug", "ff5050"])
     end
   end
 
@@ -69,13 +83,12 @@ RSpec.describe Labeler do
     end
   end
 
-  describe ".clear_labels" do
-    it "calls the instance method" do
-      allow(client).to receive(:labels).and_return([])
-      instance = described_class.new(client: client, labels_hash: {})
-      allow(described_class).to receive(:new).and_return(instance)
-      described_class.clear_labels("sample_repo")
-      expect(described_class).to have_received(:new)
+  describe "#delete_label" do
+    it "uses the octokit method" do
+      allow(client).to receive(:delete_label!)
+      labeler = described_class.new(client: client)
+      labeler.delete_label(["sample_repo"], "on hold")
+      expect(client).to have_received(:delete_label!).with("sample_repo", "on hold")
     end
   end
 

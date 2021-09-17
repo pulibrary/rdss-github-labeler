@@ -4,14 +4,6 @@ require 'pry'
 require 'octokit'
 
 class Labeler
-  def self.apply_labels(repo)
-    new.apply_labels(repo)
-  end
-
-  def self.clear_labels(repo)
-    new.clear_labels(repo)
-  end
-
   attr_reader :client, :labels_hash
   # @param client Octokit::Client
   # @param labels_hash Hash see labels.json for expected structure
@@ -23,6 +15,12 @@ class Labeler
   # lists all the categories in the labels hash
   def categories
     labels_hash.keys.map(&:to_s)
+  end
+
+  # @param repo String The repository, aka "pulibrary/figgy"
+  # @return Array<Array<String, String>> a list of labels by name and color
+  def list_labels(repo)
+    client.labels(repo).map{ |l| [l[:name], l[:color]]}
   end
 
   # Apply the labels
@@ -51,10 +49,20 @@ class Labeler
     end
   end
 
+  # Delete the labels from the repo
+  # @param repos Array<String> List of repositories to delete from, aka ["pulibrary/figgy", "pulibrary/dpul"]
+  # @param label String The name of the label, aka "on hold"
+  # @return bool Whether it was deleted
+  def delete_label(repos, label)
+    repos.map do |repo|
+      client.delete_label!(repo, label)
+    end
+  end
+
   private
 
     def connect_client
-      Octokit::Client.new(:access_token => token)
+      Octokit::Client.new(:access_token => token, auto_paginate: true)
     end
 
     def token

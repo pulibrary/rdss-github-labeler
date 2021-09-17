@@ -1,6 +1,8 @@
 # dls-github-label-maker
 Apply a standardized set of labels to github repositories
 
+All repositories are likely to have some assortment of unique labels. Many / Most of these will be #000000 for the relevant feature.
+
 # Setup
 
 ```
@@ -23,4 +25,4 @@ $ bin/labeler apply_labels [organization/repository]
 ```
 
 # Reference
-https://www.rubydoc.info/gems/octokit/4.21.0/Octokit/Client/Labels
+https://octokit.github.io/octokit.rb/Octokit/Client/Labels.html
