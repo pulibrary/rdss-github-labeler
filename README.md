@@ -25,4 +25,4 @@ $ bin/labeler apply_labels [organization/repository]
 ```
 
 # Reference
-https://www.rubydoc.info/gems/octokit/4.21.0/Octokit/Client/Labels
+https://octokit.github.io/octokit.rb/Octokit/Client/Labels.html
