@@ -1,6 +1,8 @@
 # dls-github-label-maker
 Apply a standardized set of labels to github repositories
 
+All repositories are likely to have some assortment of unique labels. Many / Most of these will be #000000 for the relevant feature.
+
 # Setup
 
 ```

@@ -6,6 +6,13 @@ class LabelerCLI < Thor
     true
   end
 
+  desc "list_labels [org/repository]", "list all the labels in given repo"
+  def list_labels(repo)
+    Labeler.new.list_labels(repo).each do |pair|
+      puts "#{pair[0]}, #{pair[1]}"
+    end
+  end
+
   desc "categories", "list all the category names"
   def categories
     puts Labeler.new.categories

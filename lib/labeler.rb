@@ -17,6 +17,10 @@ class Labeler
     labels_hash.keys.map(&:to_s)
   end
 
+  def list_labels(repo)
+    client.labels(repo).map{ |l| [l[:name], l[:color]]}
+  end
+
   # Apply the labels
   # @param repo String The repository, aka "pulibrary/figgy"
   def apply_labels(repo)
@@ -46,7 +50,7 @@ class Labeler
   private
 
     def connect_client
-      Octokit::Client.new(:access_token => token)
+      Octokit::Client.new(:access_token => token, auto_paginate: true)
     end
 
     def token
