@@ -21,16 +21,6 @@ RSpec.describe Labeler do
     end
   end
 
-  describe ".apply_labels" do
-    it "calls the instance method" do
-      labels_hash = {}
-      instance = described_class.new(client: client, labels_hash: labels_hash)
-      allow(described_class).to receive(:new).and_return(instance)
-      described_class.apply_labels("sample_repo")
-      expect(described_class).to have_received(:new)
-    end
-  end
-
   describe "#apply_labels" do
     it "applies labels" do
       labels_hash = {
@@ -66,16 +56,6 @@ RSpec.describe Labeler do
         expect(client).to have_received(:add_label).with(repo, "refactor", "44cec0")
         expect(client).to have_received(:update_label).with(repo, "refactor", {color: "44cec0"})
       end
-    end
-  end
-
-  describe ".clear_labels" do
-    it "calls the instance method" do
-      allow(client).to receive(:labels).and_return([])
-      instance = described_class.new(client: client, labels_hash: {})
-      allow(described_class).to receive(:new).and_return(instance)
-      described_class.clear_labels("sample_repo")
-      expect(described_class).to have_received(:new)
     end
   end
 

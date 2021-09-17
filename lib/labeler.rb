@@ -4,14 +4,6 @@ require 'pry'
 require 'octokit'
 
 class Labeler
-  def self.apply_labels(repo)
-    new.apply_labels(repo)
-  end
-
-  def self.clear_labels(repo)
-    new.clear_labels(repo)
-  end
-
   attr_reader :client, :labels_hash
   # @param client Octokit::Client
   # @param labels_hash Hash see labels.json for expected structure
