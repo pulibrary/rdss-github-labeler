@@ -1,5 +1,6 @@
 {
-  "category1": {
+  "priority": {
+    "color-name": "red",
     "color": "ff5050",
     "labels": ["bug", "security"]
   },
@@ -27,10 +28,15 @@
   },
   "category7": {
     "color": "cc317c",
-    "labels": ["question", "replication-needed", "spike", "user-test"]
+    "labels": ["question", "replication-needed", "spike", "usability-test"]
   },
   "category7": {
     "color": "e9e9e9",
     "labels": ["wontfix"]
+  },
+  "board": {
+    "color-name": "green",
+    "color": "b4e051",
+    "labels": ["work-cycle", "maintenance / research", "on deck"]
   }
 }
