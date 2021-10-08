@@ -1,36 +1,45 @@
 {
-  "category1": {
+  "high priority": {
+    "color-name": "red",
     "color": "ff5050",
-    "labels": ["bug", "security"]
+    "labels": ["priority: high", "priority: critical", "security"]
   },
-  "category2": {
-    "color": "ffa573",
-    "labels": ["accessibility", "content", "responsive",
-      "user experience", "visual design"]
-  },
-  "category3": {
-    "color": "ffd4a0",
-    "labels": ["cleanup"]
-  },
-  "category4": {
-    "color": "41d6c3",
-    "labels": ["optimization", "documentation",
-      "enhancement"]
-  },
-  "category5": {
-    "color": "44cec0",
-    "labels": ["refactor"]
-  },
-  "category6": {
-    "color": "b4e051",
-    "labels": ["feature", "user-request", "infrastructure"]
-  },
-  "category7": {
+  "blocked": {
+    "color-name": "magenta",
     "color": "cc317c",
-    "labels": ["question", "replication-needed", "spike", "user-test"]
+    "labels": ["product-owner-review", "question", "replication-needed", "blocked"]
   },
-  "category7": {
+  "source": {
+    "color-name": "dark yellow",
+    "color": "fbca04",
+    "labels": ["user-request", "honeybadger"]
+  },
+  "scope": {
+    "color-name": "bright aqua",
+    "color": "41d6c3",
+    "labels": ["feature", "enhancement", "bug"]
+  },
+  "size": {
+    "color-name": "royal blue",
+    "color": "5319e7",
+    "labels": ["spike", "small", "epic", "learning-friendly"]
+  },
+  "status": {
+    "color-name": "gray",
     "color": "e9e9e9",
-    "labels": ["wontfix"]
+    "labels": ["wontfix", "wishlist"]
+  },
+  "task": {
+    "color-name": "dusty blue",
+    "color": "bfdadc",
+    "labels": ["cleanup", "dependencies", "documentation", "refactor",
+      "accessibility", "content", "responsive", "user experience",
+      "usability-test", "visual design", "wireframe", "javascript",
+      "database", "index", "backend", "optimization", "infrastructure"]
+  },
+  "board": {
+    "color-name": "bright yellow",
+    "color": "fffe99",
+    "labels": ["work-cycle", "maintenance / research", "on deck"]
   }
 }
