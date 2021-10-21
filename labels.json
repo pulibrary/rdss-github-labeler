@@ -2,7 +2,7 @@
   "high priority": {
     "color-name": "red",
     "color": "ff5050",
-    "labels": ["priority: high", "priority: critical", "security"]
+    "labels": ["priority: high", "priority: critical", "security", "sudden-priority"]
   },
   "blocked": {
     "color-name": "magenta",
