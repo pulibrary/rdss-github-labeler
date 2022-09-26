@@ -23,10 +23,10 @@ to lastpass each time you want to use it.
 $ lpass login <email@email.com>
 ```
 
-To apply all the labels from labels.json to a repository, do:
+To apply all the labels from labels.json to a repository, do, e.g.:
 
 ```
-$ bin/labeler apply_labels [organization/repository]
+$ bin/labeler apply_labels "pulibrary/figgy"
 ```
 
 To delete a label from all of the DLS repositories, do:
