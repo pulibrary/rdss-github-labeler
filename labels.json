@@ -12,7 +12,7 @@
   "source": {
     "color-name": "dark yellow",
     "color": "fbca04",
-    "labels": ["user-request", "honeybadger"]
+    "labels": ["user-request", "honeybadger", "mule"]
   },
   "scope": {
     "color-name": "bright aqua",
