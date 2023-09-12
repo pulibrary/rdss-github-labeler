@@ -40,6 +40,6 @@
   "board": {
     "color-name": "bright yellow",
     "color": "fffe99",
-    "labels": ["work-cycle", "maintenance / research", "on deck"]
+    "labels": ["work-cycle", "maintenance / research", "on deck", "operations"]
   }
 }
