@@ -3,7 +3,7 @@ orbs:
   ruby: circleci/ruby@0.1.2
 
 jobs:
-  build:
+  test:
     docker:
       - image: cimg/ruby:3.0.1
     executor: ruby/default
@@ -17,7 +17,22 @@ jobs:
           name: Run rspec
           command: bundle exec rspec spec/
 
+  rubocop:
+    docker:
+      - image: cimg/ruby:3.0.1
+    executor: ruby/default
+    steps:
+      - checkout
+      - run:
+          name: bundler version
+          command: gem install bundler:2.2.16
+      - ruby/bundle-install
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop
+
 workflows:
   build_accept:
     jobs:
-      - build
+      - rubocop
+      - test
