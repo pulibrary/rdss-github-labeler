@@ -1,5 +1,5 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 SimpleCov.minimum_coverage 100
 
