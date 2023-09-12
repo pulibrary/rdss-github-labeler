@@ -1,7 +1,7 @@
-require 'json'
-require 'open3'
-require 'pry'
-require 'octokit'
+require "json"
+require "open3"
+require "pry"
+require "octokit"
 
 class Labeler
   attr_reader :client, :labels_hash
@@ -20,7 +20,7 @@ class Labeler
   # @param repo String The repository, aka "pulibrary/figgy"
   # @return Array<Array<String, String>> a list of labels by name and color
   def list_labels(repo)
-    client.labels(repo).map{ |l| [l[:name], l[:color]]}
+    client.labels(repo).map { |l| [l[:name], l[:color]] }
   end
 
   # Apply the labels
@@ -28,13 +28,9 @@ class Labeler
   def apply_labels(repo)
     labels_hash.values.each do |h|
       h[:labels].each do |label|
-        begin
-          client.add_label(repo, label, h[:color])
-        rescue Octokit::UnprocessableEntity => e
-          if already_exists_error?(e.message)
-            client.update_label(repo, label, { color: h[:color] })
-          end
-        end
+        client.add_label(repo, label, h[:color])
+      rescue Octokit::UnprocessableEntity => e
+        client.update_label(repo, label, { color: h[:color] }) if already_exists_error?(e.message)
       end
     end
   end
@@ -61,24 +57,24 @@ class Labeler
 
   private
 
-    def connect_client
-      Octokit::Client.new(:access_token => token, auto_paginate: true)
-    end
+  def connect_client
+    Octokit::Client.new(access_token: token, auto_paginate: true)
+  end
 
-    def token
-      out, _st = Open3.capture2('lpass show hubot_github_token --notes')
-      out
-    end
+  def token
+    out, _st = Open3.capture2("lpass show hubot_github_token --notes")
+    out
+  end
 
-    def load_labels
-      JSON.parse(File.read("labels.json"), symbolize_names: true)
-    end
+  def load_labels
+    JSON.parse(File.read("labels.json"), symbolize_names: true)
+  end
 
-    def already_exists_error?(message)
-      message.split("\n")
-        .map{ |l| l.strip.split(":")}
-        .select{ |pair| pair.first == "code"}
-        .flatten[1]
-        .strip == "already_exists"
-    end
+  def already_exists_error?(message)
+    message.split("\n")
+           .map { |l| l.strip.split(":") }
+           .select { |pair| pair.first == "code" }
+           .flatten[1]
+           .strip == "already_exists"
+  end
 end

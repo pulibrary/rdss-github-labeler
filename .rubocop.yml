@@ -1,0 +1,11 @@
+inherit_gem:
+  bixby: bixby_default.yml
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false

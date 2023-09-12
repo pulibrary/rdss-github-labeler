@@ -1,6 +1,6 @@
-require 'pry'
-require 'labeler'
-require 'octokit'
+require "pry"
+require "labeler"
+require "octokit"
 
 RSpec.describe Labeler do
   let(:client) { instance_double("Octokat::Client") }
@@ -24,20 +24,20 @@ RSpec.describe Labeler do
   describe "#list_labels" do
     it "returns a list of name / color pairs" do
       octokit_result = [
-        {:id=>654012521,
-         :node_id=>"MDU6TGFiZWw2NTQwMTI1MjE=",
-         :url=>"https://api.github.com/repos/pulibrary/figgy/labels/bug",
-         :name=>"bug",
-         :color=>"ff5050",
-         :default=>true,
-         :description=>""},
-        {:id=>654012527,
-         :node_id=>"MDU6TGFiZWw2NTQwMTI1Mjc=",
-         :url=>"https://api.github.com/repos/pulibrary/figgy/labels/wontfix",
-         :name=>"wontfix",
-         :color=>"ffffff",
-         :default=>true,
-         :description=>nil}
+        { id: 654_012_521,
+          node_id: "MDU6TGFiZWw2NTQwMTI1MjE=",
+          url: "https://api.github.com/repos/pulibrary/figgy/labels/bug",
+          name: "bug",
+          color: "ff5050",
+          default: true,
+          description: "" },
+        { id: 654_012_527,
+          node_id: "MDU6TGFiZWw2NTQwMTI1Mjc=",
+          url: "https://api.github.com/repos/pulibrary/figgy/labels/wontfix",
+          name: "wontfix",
+          color: "ffffff",
+          default: true,
+          description: nil }
       ]
       allow(client).to receive(:labels).and_return(octokit_result)
       labeler = described_class.new(client: client)
@@ -48,8 +48,8 @@ RSpec.describe Labeler do
   describe "#apply_labels" do
     it "applies labels" do
       labels_hash = {
-        :category1=>{:color=>"ff5050", :labels=>["bug", "security"]},
-        :category5=>{:color=>"44cec0", :labels=>["refactor"]}
+        category1: { color: "ff5050", labels: ["bug", "security"] },
+        category5: { color: "44cec0", labels: ["refactor"] }
       }
       allow(client).to receive(:add_label)
       labeler = described_class.new(client: client, labels_hash: labels_hash)
@@ -63,7 +63,7 @@ RSpec.describe Labeler do
     context "when the token already exists" do
       it "updates the color" do
         labels_hash = {
-          :category5=>{:color=>"44cec0", :labels=>["refactor"]}
+          category5: { color: "44cec0", labels: ["refactor"] }
         }
         response_hash = {
           method: "POST",
@@ -78,7 +78,7 @@ RSpec.describe Labeler do
         repo = "sample_repo"
         labeler.apply_labels(repo)
         expect(client).to have_received(:add_label).with(repo, "refactor", "44cec0")
-        expect(client).to have_received(:update_label).with(repo, "refactor", {color: "44cec0"})
+        expect(client).to have_received(:update_label).with(repo, "refactor", { color: "44cec0" })
       end
     end
   end
@@ -95,20 +95,20 @@ RSpec.describe Labeler do
   describe "#clear_labels" do
     it "applies labels" do
       labels = [
-        { :id=>3339035774,
-          :node_id=>"MDU6TGFiZWwzMzM5MDM1Nzc0",
-          :url=> "https://api.github.com/repos/pulibrary/dls-github-label-maker/labels/bug",
-          :name=>"bug",
-          :color=>"ff5050",
-          :default=>true,
-          :description=>"Something isn't working"},
-        { :id=>3342338650,
-          :node_id=>"MDU6TGFiZWwzMzQyMzM4NjUw",
-          :url=> "https://api.github.com/repos/pulibrary/dls-github-label-maker/labels/refactor",
-          :name=>"refactor",
-          :color=>"44cec0",
-          :default=>false,
-          :description=>nil}
+        { id: 3_339_035_774,
+          node_id: "MDU6TGFiZWwzMzM5MDM1Nzc0",
+          url: "https://api.github.com/repos/pulibrary/dls-github-label-maker/labels/bug",
+          name: "bug",
+          color: "ff5050",
+          default: true,
+          description: "Something isn't working" },
+        { id: 3_342_338_650,
+          node_id: "MDU6TGFiZWwzMzQyMzM4NjUw",
+          url: "https://api.github.com/repos/pulibrary/dls-github-label-maker/labels/refactor",
+          name: "refactor",
+          color: "44cec0",
+          default: false,
+          description: nil }
       ]
       allow(client).to receive(:labels).and_return(labels)
       allow(client).to receive(:delete_label!)
