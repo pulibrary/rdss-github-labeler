@@ -53,11 +53,14 @@ RSpec.describe Labeler do
       }
       allow(client).to receive(:add_label)
       labeler = described_class.new(client: client, labels_hash: labels_hash)
-      repo = "sample_repo"
-      labeler.apply_labels(repo)
-      expect(client).to have_received(:add_label).with(repo, "bug", "ff5050")
-      expect(client).to have_received(:add_label).with(repo, "security", "ff5050")
-      expect(client).to have_received(:add_label).with(repo, "refactor", "44cec0")
+      repos = ["sample_repo1", "sample_repo2"]
+      labeler.apply_labels(repos)
+      expect(client).to have_received(:add_label).with("sample_repo1", "bug", "ff5050")
+      expect(client).to have_received(:add_label).with("sample_repo1", "security", "ff5050")
+      expect(client).to have_received(:add_label).with("sample_repo1", "refactor", "44cec0")
+      expect(client).to have_received(:add_label).with("sample_repo2", "bug", "ff5050")
+      expect(client).to have_received(:add_label).with("sample_repo2", "security", "ff5050")
+      expect(client).to have_received(:add_label).with("sample_repo2", "refactor", "44cec0")
     end
 
     context "when the token already exists" do
@@ -75,10 +78,12 @@ RSpec.describe Labeler do
         allow(client).to receive(:update_label)
 
         labeler = described_class.new(client: client, labels_hash: labels_hash)
-        repo = "sample_repo"
-        labeler.apply_labels(repo)
-        expect(client).to have_received(:add_label).with(repo, "refactor", "44cec0")
-        expect(client).to have_received(:update_label).with(repo, "refactor", { color: "44cec0" })
+        repos = ["sample_repo1", "sample_repo2"]
+        labeler.apply_labels(repos)
+        expect(client).to have_received(:add_label).with("sample_repo1", "refactor", "44cec0")
+        expect(client).to have_received(:update_label).with("sample_repo1", "refactor", { color: "44cec0" })
+        expect(client).to have_received(:add_label).with("sample_repo2", "refactor", "44cec0")
+        expect(client).to have_received(:update_label).with("sample_repo2", "refactor", { color: "44cec0" })
       end
     end
   end

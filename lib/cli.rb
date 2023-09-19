@@ -18,9 +18,9 @@ class LabelerCLI < Thor
     puts Labeler.new.categories
   end
 
-  desc "apply_labels [org/repository]", "apply all the labels to given repo"
-  def apply_labels(repo)
-    Labeler.new.apply_labels(repo)
+  desc "apply_labels [org/repository,org/repository] ", "apply all the labels to given repos"
+  def apply_labels(repos)
+    Labeler.new.apply_labels(repos.split(","))
   end
 
   desc "clear_labels [org/repository/]", "delete all labels from the given repo"
@@ -28,7 +28,7 @@ class LabelerCLI < Thor
     Labeler.new.clear_labels(repo)
   end
 
-  desc "delete_label [org/repository,org/repository] label", "delete the label from the repo"
+  desc "delete_label [org/repository,org/repository] label", "delete the label from the repos"
   def delete_label(repos, label)
     puts Labeler.new.delete_label(repos.split(","), label)
   end
