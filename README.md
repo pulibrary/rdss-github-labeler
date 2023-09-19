@@ -26,7 +26,7 @@ $ lpass login <email@email.com>
 To apply all the labels from labels.json to a repository, do, e.g.:
 
 ```
-$ bin/labeler apply_labels "pulibrary/figgy"
+$ bin/labeler apply_labels pulibrary/figgy,pulibrary/dpul,pulibrary/pulmap,pulibrary/pulfalight,pulibrary/lae-blacklight
 ```
 
 To delete a label from all of the DLS repositories, do:
