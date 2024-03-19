@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: bundler version
-          command: gem install bundler:2.2.16
+          command: gem install bundler:2.5.6
       - ruby/bundle-install
       - run:
           name: Run rspec
@@ -25,7 +25,7 @@ jobs:
       - checkout
       - run:
           name: bundler version
-          command: gem install bundler:2.2.16
+          command: gem install bundler:2.5.6
       - ruby/bundle-install
       - run:
           name: Run rubocop

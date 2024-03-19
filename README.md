@@ -1,4 +1,4 @@
-# dls-github-label-maker
+# rdss-github-label-maker
 
 Apply a standardized set of labels to github repositories
 
@@ -26,16 +26,18 @@ $ lpass login <email@email.com>
 To apply all the labels from labels.json to a repository, do, e.g.:
 
 ```
-$ bin/labeler apply_labels pulibrary/figgy,pulibrary/dpul,pulibrary/pulmap,pulibrary/pulfalight,pulibrary/lae-blacklight
+$ bin/labeler apply_labels pulibrary/pdc_discovery,pulibrary/pdc_describe,pulibrary/tiger-data-app,pulibrary/oawaiver,pulibrary/rdss-handbook, pulibrary/rdss-catchall
 ```
 
-To delete a label from all of the DLS repositories, do:
+To delete a label from all of the RDSS repositories, do:
 
 ```
-$ bin/labeler delete_label pulibrary/figgy,pulibrary/dpul,pulibrary/pulmap,pulibrary/pulfalight,pulibrary/lae-blacklight [label]
+$ bin/labeler delete_label pulibrary/pdc_discovery,pulibrary/pdc_describe,pulibrary/tiger-data-app,pulibrary/oawaiver,pulibrary/rdss-handbook, pulibrary/rdss-catchall [label]
 ```
 
 # Reference
 * Code uses the [Octokit Client](https://octokit.github.io/octokit.rb/Octokit/Client/Labels.html)
 * Styleguide originated from the [Drupal labels style guide](https://github.com/pulibrary/pul_library_drupal/wiki/Issues-Label-Style-Guide)
 
+## Thank you
+Forked from [dls-github-labeler](https://github.com/pulibrary/dls-github-labeler/)
