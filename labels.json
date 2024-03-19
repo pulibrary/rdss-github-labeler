@@ -2,12 +2,17 @@
   "high priority": {
     "color-name": "red",
     "color": "ff5050",
-    "labels": ["post-incident", "security", "sudden-priority"]
+    "labels": ["bug", "post-incident", "security", "unplanned work"]
   },
   "blocked": {
     "color-name": "magenta",
     "color": "cc317c",
-    "labels": ["product-owner-review", "question", "replication-needed", "blocked"]
+    "labels": ["question", "blocked"]
+  },
+  "shared-goal": {
+    "color-name": "orange",
+    "color": "EF5C19",
+    "labels": ["shared-goal", "accessibility"]
   },
   "source": {
     "color-name": "dark yellow",
@@ -17,17 +22,17 @@
   "scope": {
     "color-name": "bright aqua",
     "color": "41d6c3",
-    "labels": ["feature", "enhancement", "bug", "epic"]
+    "labels": ["enhancement", "epic"]
   },
   "size": {
     "color-name": "royal blue",
     "color": "5319e7",
-    "labels": ["spike", "small", "epic", "learning-friendly"]
+    "labels": ["spike", "learning-friendly"]
   },
   "status": {
     "color-name": "gray",
     "color": "e9e9e9",
-    "labels": ["wontfix", "wishlist"]
+    "labels": ["wontfix", "duplicate"]
   },
   "mvp": {
     "color-name": "dark green",
@@ -37,14 +42,11 @@
   "task": {
     "color-name": "dusty blue",
     "color": "bfdadc",
-    "labels": ["cleanup", "dependencies", "documentation", "refactor",
-      "accessibility", "content", "responsive", "user experience",
-      "usability-test", "visual design", "wireframe", "javascript",
-      "database", "index", "backend", "optimization", "infrastructure"]
+    "labels": ["cleanup", "dependencies", "technical-debt"]
   },
   "board": {
     "color-name": "bright yellow",
     "color": "fffe99",
-    "labels": ["work-cycle", "maintenance / research", "on deck", "operations"]
+    "labels": ["operations"]
   }
 }
