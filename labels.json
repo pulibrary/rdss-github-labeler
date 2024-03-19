@@ -2,7 +2,7 @@
   "high priority": {
     "color-name": "red",
     "color": "ff5050",
-    "labels": ["priority: high", "priority: critical", "security", "sudden-priority"]
+    "labels": ["post-incident", "security", "sudden-priority"]
   },
   "blocked": {
     "color-name": "magenta",
@@ -12,12 +12,12 @@
   "source": {
     "color-name": "dark yellow",
     "color": "fbca04",
-    "labels": ["user-request", "honeybadger", "mule"]
+    "labels": ["user-request", "honeybadger"]
   },
   "scope": {
     "color-name": "bright aqua",
     "color": "41d6c3",
-    "labels": ["feature", "enhancement", "bug"]
+    "labels": ["feature", "enhancement", "bug", "epic"]
   },
   "size": {
     "color-name": "royal blue",
@@ -28,6 +28,11 @@
     "color-name": "gray",
     "color": "e9e9e9",
     "labels": ["wontfix", "wishlist"]
+  },
+  "mvp": {
+    "color-name": "dark green",
+    "color": "013220",
+    "labels": ["MVP", "post-MVP"]
   },
   "task": {
     "color-name": "dusty blue",
