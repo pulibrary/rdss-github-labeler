@@ -26,13 +26,13 @@ $ lpass login <email@email.com>
 To apply all the labels from labels.json to a repository, do, e.g.:
 
 ```
-$ bin/labeler apply_labels pulibrary/pdc_discovery,pulibrary/pdc_describe,pulibrary/tiger-data-app,pulibrary/oawaiver,pulibrary/rdss-handbook, pulibrary/rdss-catchall
+$ bin/labeler apply_labels pulibrary/pdc_discovery,pulibrary/pdc_describe,pulibrary/tiger-data-app,pulibrary/oawaiver,pulibrary/rdss-handbook, pulibrary/rdss-catchall, pulibrary/orcid_princeton
 ```
 
 To delete a label from all of the RDSS repositories, do:
 
 ```
-$ bin/labeler delete_label pulibrary/pdc_discovery,pulibrary/pdc_describe,pulibrary/tiger-data-app,pulibrary/oawaiver,pulibrary/rdss-handbook, pulibrary/rdss-catchall [label]
+$ bin/labeler delete_label pulibrary/pdc_discovery,pulibrary/pdc_describe,pulibrary/tiger-data-app,pulibrary/oawaiver,pulibrary/rdss-handbook, pulibrary/rdss-catchall, pulibrary/orcid_princeton [label]
 ```
 
 # Reference
